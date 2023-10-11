@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <section class="container personalAccount">
+        <div class="container__row">
+            <div class="personalAccount__wrapper">
+                <div class="personalAccount__personalCard personalCard js-personal-card">
+                    <div class="personalCard__top">
+                        <div class="personalCard__mobTop">
+                            <div class="personalCard__mobBurger js-personal-burger">
+                                <div class="personalCard__mobBurgerLine"></div>
+                            </div>
+                            <h3 class="personalCard__mobTopTitle title title--small">Добавить фото</h3></div>
+                        <div class="personalCard__photo"><img src="" srcset=",  2x" alt="Account photo" class="personalCard__photo"></div>
+                        <h3 class="personalCard__name">Тимка</h3></div>
+                    <ul class="personalCard__links">
+                        <li class="personalCard__link personalCard__link--current">
+                            <svg class="personalCard__linkIcon">
+                                <use href="assets/img/spritemap.svg#icon-personal-account-icon"></use>
+                            </svg>
+                            <a href="/photo-contest/personal-data/">Личные данные</a></li>
+                        <li class="personalCard__link">
+                            <svg class="personalCard__linkIcon personalCard__linkIcon--add">
+                                <use href="assets/img/spritemap.svg#icon-personal-add-photo-icon"></use>
+                            </svg>
+                            <a href="/photo-contest/account-add-photo/">Добавить фото</a></li>
+                        <li class="personalCard__link">
+                            <svg class="personalCard__linkIcon">
+                                <use href="assets/img/spritemap.svg#icon-personal-exit-icon"></use>
+                            </svg>
+                            <a href="#account-exit" class="js-open-modal">Выход</a></li>
+                        <li class="personalCard__link personalCard__link--separator"></li>
+                        <li class="personalCard__link">
+                            <svg class="personalCard__linkIcon personalCard__linkIcon--feedback">
+                                <use href="assets/img/spritemap.svg#icon-personal-icon"></use>
+                            </svg>
+                            <a href="mailto:inbox@zenit-kmz.ru">Обратная связь</a></li>
+                    </ul>
+                </div>
+                <div class="personalAccount__content accountContent">
+                    <h2 class="accountContent__title title title--small">
+                        Личный кабинет                    </h2>
+                    <div class="accountContent__item personalData">
+                    <form method="post" name="form1" action="/photo-contest/personal-data/" enctype="multipart/form-data" class="personalData__form accountForm">
+                            <input type="hidden" name="sessid" id="sessid" value="fe1a4167529a71688bbeb4dbffd3d108">                            <input type="hidden" name="lang" value="s1">
+                            <input type="hidden" name="ID" value="1016">
+                            <div class="accountForm__inputWrapper">
+                                <label for="personal-data-name">
+                                    ФИО                                </label>
+                                <input class="input input--account input--personalData" id="personal-data-name" name="NAME" data-validation="required" placeholder="ФИО" value="Тимка">
+                            </div>
+                            <div class="accountForm__row accountForm__row--personalData">
+                                <div class="accountForm__inputWrapper">
+                                    <label for="personal-data-phone">
+                                        Телефон:                                    </label>
+                                    <input type="tel" class="input input--account input--personalData" id="personal-data-phone" name="PERSONAL_PHONE" data-validation="phone" placeholder="Введите телефон" value="+7 (999) 562-28-71">
+                                </div>
+                                <div class="accountForm__inputWrapper">
+                                    <label for="personal-data-mail">E-Mail:</label>
+                                    <input type="email" class="input input--account input--personalData" id="personal-data-mail" name="EMAIL" data-validation="email" placeholder="Введите адрес электронной почты" value="tnmatn33@gmail.com">
+                                </div>
+                            </div>
+                            <div class="accountForm__row accountForm__row--personalData">
+                                <div class="accountForm__inputWrapper">
+                                    <label for="personal-data-dob">
+                                        Дата рождения                                    </label>
+                                    <input class="input input--account input--personalData js-input-date" id="personal-data-dob" name="PERSONAL_BIRTHDAY" placeholder="Введите дату рождения 01.12.2000" value="16.06.2000">
+                                </div>
+                                <div class="accountForm__inputWrapper">
+                                    <label for="personal-data-vk">
+                                        Вконтакте                                    </label>
+                                    <input class="input input--account input--personalData" id="personal-data-vk" name="UF_VK_PAGE" placeholder="Введите ссылку на Вконтакте" value="">
+                                </div>
+                            </div>
+                            <div class="accountForm__row accountForm__row--personalData">
+                                <div class="accountForm__inputWrapper">
+                                    <label for="personal-data-login">
+                                        Логин (мин. 3 символа):                                    </label>
+                                    <input class="input input--account input--personalData" id="personal-data-login" name="LOGIN" data-validation="required" placeholder="Логин" value="eastsidekillas">
+                                </div>
+                                <div class="accountForm__inputWrapper">
+                                    <label for="personal-data-password">
+                                        Новый пароль:                                    </label>
+                                    <input type="password" class="input input--account input--personalData" id="personal-data-password" name="NEW_PASSWORD" data-validation="password" placeholder="Пароль" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="accountForm__inputWrapper">
+                                <label for="personal-data-confirm-password">
+                                    Подтверждение нового пароля:                                </label>
+                                <input class="input input--account input--personalData" id="personal-data-confirm-password" name="NEW_PASSWORD_CONFIRM" data-validation="required" placeholder="Подтверждение пароля">
+                            </div>
+                            <div class="accountForm__inputWrapper">
+                                <h4 class="accountForm__inputWrapperText">
+                                    Аватар                                </h4>
+                                <label class="fileUpload" for="input-file">
+                                    <div class="fileUpload__inner">
+                                        <span class="fileUpload__text">Нажмите, чтобы загрузить изображение</span>
+                                        <svg class="fileUpload__icon">
+                                            <use href="assets/img/spritemap.svg#icon-uploadFile"></use>
+                                        </svg>
+                                        <div class="fileUpload__photoWrapper js-photos-wrapper"></div>
+                                    </div>
+                                    <input type="file" class="input input--file js-input-file" id="input-file" accept=".jpg, .jpeg, .png" value="">
+                                </label>
+                            </div>
+                            <div class="accountForm__button accountForm__button--notMargin">
+                                <input type="submit" name="save" class="button button--blackInner" value="Сохранить">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
