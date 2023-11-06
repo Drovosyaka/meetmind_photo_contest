@@ -1,45 +1,20 @@
 from django.db import models
-from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.models import AbstractUser
 
 
-class CustomUserManager(BaseUserManager):
-    def create_user(self, username, password=None, **extra_fields):
-        if not username:
-            raise ValueError('Имя пользователя не может быть пустым')
-        user = self.model(username=username, **extra_fields)
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
+class CustomUser(AbstractUser):
+    full_name = models.CharField(max_length=30, verbose_name='ФИО', blank=True, null=True)
+    birth_date = models.DateField(blank=True, null=True, verbose_name='Дата рождения')
+    phone = models.CharField(max_length=15, verbose_name='Телефон', blank=True, null=True)
+    vk_link = models.URLField(max_length=255, blank=True, null=True, verbose_name='Профиль VK')
+    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True, verbose_name='Аватар профиля')
 
-    def create_superuser(self, username, password=None, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
+    is_active = models.BooleanField(default=True, verbose_name='Активный пользователь')
+    is_staff = models.BooleanField(default=False, verbose_name='Модератор')
 
-        return self.create_user(username, password, **extra_fields)
+    REQUIRED_FIELDS = ['full_name', 'phone', 'email']
 
-
-
-
-
-
-
-class Users(models.Model):
     class Meta:
-        db_table = 'users'
+        verbose_name = 'пользователя'
         verbose_name_plural = 'Пользователи'
-
-    id = models.AutoField(primary_key=True)
-    full_name = models.CharField(max_length=255, verbose_name='ФИО')
-    phone = models.CharField(max_length=15, verbose_name='Номер телефона')
-    email = models.EmailField(verbose_name='Email')
-    birth_date = models.DateField(auto_now_add=False, auto_now=False, verbose_name='Дата рождения')
-    vkontakte_profile = models.URLField(blank=True, null=True, verbose_name='Профиль VK')
-    username = models.CharField(max_length=100, unique=True, verbose_name='Логин')
-    password = models.CharField(max_length=128, verbose_name='Пароль')
-    avatar = models.ImageField(blank=True, upload_to='uploads/', verbose_name='Аватар профиля')
-
-    def __str__(self):
-        return self.full_name
-
-
 
