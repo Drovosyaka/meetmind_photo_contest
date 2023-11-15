@@ -1,6 +1,7 @@
 from PIL import Image
 from io import BytesIO
 from rest_framework import status, viewsets
+from rest_framework.exceptions import ValidationError
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -23,7 +24,7 @@ def register_custom_user(request):
             serializer.save()
             return Response({"message": "Регистрация прошла успешно."}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    return Response({"error": "Invalid request method"}, status=status.HTTP_400_BAD_REQUEST)
+    return Response({"error": "Неверный метод запроса"}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -53,6 +54,8 @@ class UserProfileView(APIView):
         user = request.user
         serializer = UserGetData(user)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 
 class UserProfileUpdateView(generics.RetrieveUpdateAPIView):
     permission_classes = [IsAuthenticated]

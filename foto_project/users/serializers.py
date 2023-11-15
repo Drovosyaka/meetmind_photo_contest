@@ -3,12 +3,15 @@ from .models import CustomUser
 from rest_framework.validators import UniqueValidator
 
 class UserGetData(serializers.ModelSerializer):
+
+
     class Meta:
         model = CustomUser
         fields = ['id','full_name', 'phone', 'email', 'birth_date', 'vk_link', 'username', 'avatar']
 
 
 class UserPutData(serializers.ModelSerializer):
+
     class Meta:
         model = CustomUser
         fields = ('username', 'full_name', 'birth_date', 'phone', 'email', 'avatar')
