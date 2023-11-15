@@ -1,0 +1,120 @@
+.photoContestNomination {
+  margin-bottom: 180px
+}
+
+.photoContestNomination__wrapper {
+  width: 100%
+}
+
+.photoContestNomination__title {
+  margin-bottom: 60px;
+  width: 55%
+}
+
+.photoContestNomination__items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  row-gap: 45px
+}
+
+.photoContestNomination__item {
+  margin-right: 40px;
+  text-decoration: none;
+  width: calc(33.33% - 27px)
+}
+
+.photoContestNomination__item:nth-child(3n) {
+  margin-right: 0
+}
+
+.photoContestNomination__itemImg {
+  border-radius: 5px;
+  height: auto;
+  margin-bottom: 25px;
+  overflow: hidden;
+  width: 100%
+}
+
+.photoContestNomination__itemImg img {
+  border-radius: 5px;
+  object-fit: cover;
+  transition: transform .2s ease
+}
+
+.photoContestNomination__itemText {
+  color: #202020;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+  max-width: 90%
+}
+
+.photoContestNomination__item:hover .photoContestNomination__itemText {
+  text-decoration: underline
+}
+
+.photoContestNomination__item:hover .photoContestNomination__itemImg img {
+  transform: scale(1.1)
+}
+
+@media screen and (max-width: 1020px) {
+  .photoContestNomination {
+    margin-bottom: 120px
+  }
+
+  .photoContestNomination__title {
+    margin-bottom: 45px;
+    width: 75%
+  }
+
+  .photoContestNomination__items {
+    justify-content: space-between;
+    row-gap: 30px
+  }
+
+  .photoContestNomination__item {
+    margin-right: 0;
+    width: calc(50% - 8px)
+  }
+
+  .photoContestNomination__itemImg {
+    margin-bottom: 20px;
+    overflow: hidden
+  }
+
+  .photoContestNomination__itemText {
+    line-height: 1.35
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .photoContestNomination {
+    margin-bottom: 90px
+  }
+
+  .photoContestNomination__title {
+    margin-bottom: 35px;
+    width: 100%
+  }
+
+  .photoContestNomination__items {
+    flex-direction: column;
+    justify-content: flex-start;
+    row-gap: 30px
+  }
+
+  .photoContestNomination__item {
+    width: 100%
+  }
+
+  .photoContestNomination__itemImg {
+    margin-bottom: 15px
+  }
+
+  .photoContestNomination__itemText {
+    font-size: 16px;
+    max-width: 90%
+  }
+}

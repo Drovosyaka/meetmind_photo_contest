@@ -1,0 +1,22 @@
+<section class="container photoContestNomination">
+  <div class="container__row">
+    <div class="photoContestNomination__wrapper">
+      <div class="photoContestNomination__wrapper_text_block">
+        <h2 class="photoContestNomination__title title title--small">Номинации</h2>
+        <a href="" class="text_block__text">Архив</a>
+      </div>
+      <div class="photoContestNomination__items">
+
+        <!-- <a href="javascript:void(0)" class="photoContestNomination__item">-->
+        <a href="" class="photoContestNomination__item" *ngFor="let nomination of nominations" >
+          <div class="photoContestNomination__itemImg">
+            <img [src]="nomination.imageUrl" alt="">
+          </div>
+          <span class="photoContestNomination__itemText">{{ nomination.name }}</span>
+        </a>
+
+
+      </div>
+    </div>
+  </div>
+</section>
