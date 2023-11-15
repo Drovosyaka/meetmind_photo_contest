@@ -1,104 +1,116 @@
 <section class="container photoContestVoting photoContestVoting--thirdStage">
   <div class="container__row">
-    <div class="photoContestVoting__wrapper">
-      <div class="photoContestVoting__panel navigationPanel navigationPanel--menuOpen js-photo-voting-panel">
-        <div class="navigationPanel__innerWrapper">
-          <div class="navigationPanel__items">
-            <a href="/photo-contest/udivitelnyy-mir-prirody-i-zhivotnykh/" class="navigationPanel__item navigationPanel__item--active">Красота</a>
-            <a href="/photo-contest/moya-strana/" class="navigationPanel__item ">Творчество</a>
-            <a href="/photo-contest/portret/" class="navigationPanel__item ">Спорт</a>
-          </div>
+      <div class="photoContestVoting__wrapper">
+          <div class="photoContestVoting__title title title--small">Участники</div>
+          <div class="photoContestVoting__panel navigationPanel navigationPanel--menuOpen">
+              <div class="navigationPanel__innerWrapper">
 
 
 
-          <div class="navigationPanel__menuPanel js-menu-panel">
-            <div class="navigationPanel__menuOpenButton js-menu-panel-button"><span>Все номинации</span>
-              <svg class="navigationPanel__menuOpenArrow">
-                <use xlink:href="/assets/img/spritemap.svg#icon-menu_arrowDown"></use>
-              </svg>
-            </div>
-            <div class="navigationPanel__menuItems js-menu-panel-items">
+                  <div class="navigationPanel__items" >
 
-              <a href="" class="navigationPanel__menuItem navigationPanel__menuItem--active">
-                <span>Красота</span></a>
-
-              <a href="" class="navigationPanel__menuItem navigationPanel__menuItem--active">
-                <span>Творчество</span></a>
-
-              <a href="" class="navigationPanel__menuItem navigationPanel__menuItem--active">
-                <span>Спорт</span></a>
-
-              <a href="" class="navigationPanel__menuItem navigationPanel__menuItem--active">
-                <span>Юмор</span></a>
-            </div>
-          </div>
-        </div>
-      </div>
+                      <a href="javascript:void(0)" 
+                        (click)="filterByCategory(nomination.id)" 
+                        *ngFor="let nomination of nominations.slice(0, limit)" 
+                        class="navigationPanel__item"
+                        [class.navigationPanel__item--active]="nomination.id === selectedPhotoCategory"
+                        >{{ nomination.name }}</a>
+                  </div>
+                  
+                  <div class="navigationPanel__menuPanel" [ngClass]="{ 'navigationPanel__menuPanel--active': isMenuPanelOpen }">
+                      <div class="navigationPanel__menuOpenButton"
+                      (click)="toggleMenuPanel()" [ngClass]="{ 'navigationPanel__menuOpenButton--active': isMenuPanelOpen }"> <span>Все номинации</span>
+                          <svg class="navigationPanel__menuOpenArrow">
+                              <use href="/assets/img/spritemap.svg#icon-menu_arrowDown"></use>
+                          </svg>
+                      </div>
 
 
-
-      <div class="photoContestVoting__viewSelectors ">
-        <div class="photoContestVoting__viewSelector photoContestVoting__viewSelector--active js-view-selector-photo" data-columns="4">
-          <svg class="photoContestVoting__viewSelectorIcon photoContestVoting__viewSelectorIcon--smallPic">
-            <use xlink:href="/assets/img/spritemap.svg#icon-view-selector-small"></use>
-          </svg>
-          <svg class="photoContestVoting__viewSelectorIcon photoContestVoting__viewSelectorIcon--smallPic photoContestVoting__viewSelectorIcon--tab">
-            <use xlink:href="/assets/img/spritemap.svg#icon-view-selector-small-tab"></use>
-          </svg>
-        </div>
-        <div class="photoContestVoting__viewSelector js-view-selector-photo" data-columns="3">
-          <svg class="photoContestVoting__viewSelectorIcon photoContestVoting__viewSelectorIcon--middlePic">
-            <use xlink:href="/assets/img/spritemap.svg#icon-view-selector-middle"></use>
-          </svg>
-          <svg class="photoContestVoting__viewSelectorIcon photoContestVoting__viewSelectorIcon--middlePic photoContestVoting__viewSelectorIcon--tab">
-            <use xlink:href="/assets/img/spritemap.svg#icon-view-selector-middle-tab"></use>
-          </svg>
-        </div>
-        <div class="photoContestVoting__viewSelector js-view-selector-photo" data-columns="2">
-          <svg class="photoContestVoting__viewSelectorIcon photoContestVoting__viewSelectorIcon--bigPic">
-            <use xlink:href="/assets/img/spritemap.svg#icon-view-selector-big"></use>
-          </svg>
-          <svg class="photoContestVoting__viewSelectorIcon photoContestVoting__viewSelectorIcon--bigPic photoContestVoting__viewSelectorIcon--tab">
-            <use xlink:href="/assets/img/spritemap.svg#icon-view-selector-big-tab"></use>
-          </svg>
-        </div>
-      </div>
-
-
-      <div class="js-swiper-contest">
-        <div class="photoContestVoting__cards  swiper-wrapper js-contest-third-stage js-open-photo-contest-gallery js-photo-cards">
-          <lightgallery [settings]="settings" [onBeforeSlide]="onBeforeSlide" *ngFor="let voting of voting_test">
-
-          <div id="{{voting.id}}" data-src="" class="photoContestVoting__card photoCard swiper-slide">
-            <div class="photoCard__img">
-              <img src="{{voting.photo_img}}"  alt="Природа" class="photoCard__imgItem">
-            </div>
-            <div class="photoCard__panel">
-              <div class="photoCard__panelLike"><span class="photoCard__panelLikeCounter js-like-counter">2</span>
-                <div class="photoCard__panelLikeIcon photoCard__panelLikeIcon--active">
-                  <svg class="photoCard__panelLikeIconItem">
-                    <use xlink:href="/assets/img/spritemap.svg#icon-like-full"></use>
-                  </svg>
-                </div>
+                      <div class="navigationPanel__menuItems" [ngClass]="{ 'navigationPanel__menuItems--active': isMenuPanelOpen }">
+                          <a href="javascript:void(0)" (click)="filterByCategory(nomination.photo_category)" [class.navigationPanel__item--active]="nomination.id === selectedPhotoCategory" class="navigationPanel__menuItem" *ngFor="let nomination of nominations;"><span>{{ nomination.name }}</span></a>
+                      </div>
+                  </div>
               </div>
-            </div>
-            <div class="photoCard__info">
-              <h3 class="photoCard__title">{{voting.photo_title}}</h3>
-              <span class="photoCard__author">{{voting.photo_author}}</span>
-            </div>
           </div>
-          </lightgallery>
+
+
+
+
+
+
+
+          <div class="photoContestVoting__viewSelectors">
+              <div class="photoContestVoting__viewSelector" (click)="changePhotoSize(4)" [ngClass]="{ 'photoContestVoting__viewSelector--active': selectedPhotoSize === 4 }">
+
+                  <svg class="photoContestVoting__viewSelectorIcon photoContestVoting__viewSelectorIcon--smallPic">
+                      <use href="/assets/img/spritemap.svg#icon-view-selector-small"></use>
+                  </svg>
+                  <svg class="photoContestVoting__viewSelectorIcon photoContestVoting__viewSelectorIcon--smallPic photoContestVoting__viewSelectorIcon--tab">
+                      <use href="/assets/img/spritemap.svg#icon-view-selector-small-tab"></use>
+                  </svg>
+              </div>
+              <div class="photoContestVoting__viewSelector" (click)="changePhotoSize(3)" [ngClass]="{ 'photoContestVoting__viewSelector--active': selectedPhotoSize === 3 }">
+                  <svg class="photoContestVoting__viewSelectorIcon photoContestVoting__viewSelectorIcon--middlePic">
+                      <use href="/assets/img/spritemap.svg#icon-view-selector-middle"></use>
+                  </svg>
+                  <svg class="photoContestVoting__viewSelectorIcon photoContestVoting__viewSelectorIcon--middlePic photoContestVoting__viewSelectorIcon--tab">
+                      <use href="/assets/img/spritemap.svg#icon-view-selector-middle-tab"></use>
+                  </svg>
+              </div>
+              <div class="photoContestVoting__viewSelector" (click)="changePhotoSize(2)" [ngClass]="{ 'photoContestVoting__viewSelector--active': selectedPhotoSize === 2 }">
+                  <svg class="photoContestVoting__viewSelectorIcon photoContestVoting__viewSelectorIcon--bigPic">
+                      <use href="/assets/img/spritemap.svg#icon-view-selector-big"></use>
+                  </svg>
+                  <svg class="photoContestVoting__viewSelectorIcon photoContestVoting__viewSelectorIcon--bigPic photoContestVoting__viewSelectorIcon--tab">
+                      <use href="/assets/img/spritemap.svg#icon-view-selector-big-tab"></use>
+                  </svg>
+              </div>
+          </div>
+
+
+
+
+          <div class="js-swiper-contest">
+            <div class="photoContestVoting__cards  swiper-wrapper js-contest-third-stage js-open-photo-contest-gallery js-photo-cards" [ngClass]="{
+              'photoContestVoting__cards--4photo': selectedPhotoSize === 4,
+              'photoContestVoting__cards--3photo': selectedPhotoSize === 3,
+              'photoContestVoting__cards--2photo': selectedPhotoSize === 2
+            }">
+
+
+                <div class="photoContestVoting__card photoCard swiper-slide" *ngFor="let photo of photosList">
+
+                    <div class="photoCard__img">
+                        <img [src]="photo.image" alt="{{ photo.name_work }}" class="photoCard__imgItem">
+                    </div>
+
+                    <div class="photoCard__info">
+                        <h3 class="photoCard__title">{{ photo.name_work }}</h3>
+                        <span class="photoCard__author">{{photo.user_full_name}}</span>    
+                        <span class="photoCard__panelLikeCounter js-like-counter">Голосов: {{ photo.vote_count }}</span>
+                        <div class="photoCard__panelLikeIcon photoCard__panelLikeIcon--active">
+                          <svg class="photoCard__panelLikeIconItem">
+                            <use xlink:href="/assets/img/spritemap.svg#icon-like-full"></use>
+                          </svg>
+                        </div>
+                      </div>
+                </div>
+            </div>
+
         </div>
+
+
+
+
+
+
+
+              <div class="pagination button_after_12">
+
+                  <div class="photoContestVoting__form">
+                      <input type="submit" class="photoContestVoting__btnMore button button--more" value="Показать еще">
+                  </div>
+              </div>
+          </div>
       </div>
-
-
-      <div class="pagination button_after_12">
-        <div id="showmore"  class="photoContestVoting__form  js-photo-contest-load-more-form">
-          <input type="submit" class="photoContestVoting__btnMore button button--more" value="Показать еще">
-        </div>
-
-      </div>
-
-    </div>
-  </div>
 </section>

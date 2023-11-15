@@ -1,0 +1,63 @@
+<app-header></app-header>
+
+
+<section class="container contacts">
+    <div class="container__row">
+        <div class="contacts__wrapper">
+            <h2 class="contacts__title title title--main">Контакты</h2>
+            <div class="contacts__items">
+                <div class="contacts__item contacts__item--callCentre"><span class="contacts__itemName">Связь с нами</span>
+                    <a href="tel:84955618008" class="contacts__itemLink">+7 (982) 712-34-44</a>
+                    <a href="mailto:kmz@zenit-kmz.ru" class="contacts__itemLink">meetmindcreate@gmail.com</a>
+                </div>
+
+                <div class="contacts__item contacts__item--ServiceCentre"><span class="contacts__itemName">Наш офис</span>
+                    <span class="contacts__itemAddress">г. Лесной, <br> Красная Площадь, д.&nbsp;3, 228</span>
+                    </div>
+
+                <div class="contacts__item contacts__item--vk">
+                    <span class="contacts__itemName">Вконтакте</span> 
+                    <a href="https://vk.com/posmotrinamenya_lesnoy" class="contacts__itemLink">vk.com/posmotrinamenya_lesnoy</a>
+                </div>
+
+                <!--- <div class="contacts__item contacts__item--tg">
+                    <span class="contacts__itemName">Telegram</span> 
+                    <a href="https://t.me/zenitkmz" class="contacts__itemLink">t.me/zenitkmz</a>
+                </div> -->
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container contactsFeedback">
+    <div class="container__row">
+        <div class="contactsFeedback__wrapper">
+            <div class="contactsFeedback__leftSide"><h3 class="contactsFeedback__title">Обратная связь</h3></div>
+            <div class="contactsFeedback__rightSide">
+                <form method="post" class="contactsFeedback__form form">
+                    <input type="hidden" name="type" value="Обратная связь">
+
+                    <div class="form__inputWrapper">
+                        <input class="input" id="contacts-name" name="name" data-validation="required" placeholder=" ">
+                        <label for="contacts-name">ФИО</label></div>
+                    <div class="form__inputWrapper"><input type="tel" class="input" id="contacts-phone" name="phone" data-validation="phone" placeholder=" "> <label for="contacts-phone">Ваш телефон</label></div>
+                    <div class="form__inputWrapper"><input type="email" class="input" id="contacts-email" name="email" data-validation="email" placeholder=" "> <label for="contacts-email">Ваш Email</label></div>
+                    <div class="form__inputWrapper"><input class="input" id="contacts-company" placeholder=" " name="comp"> <label for="contacts-company">Компания</label></div>
+                    <div class="form__inputWrapper"><textarea class="textarea" rows="2" id="contacts-comment" name="comm" placeholder=" "></textarea> <label for="contacts-comment">Комментарий</label>
+                    </div>
+                    <div class="form__checkboxWrapper">
+                        <div class="checkbox"><input type="checkbox" class="checkbox__element" id="contact-checkbox" required="" data-validation="checkbox"> <label class="checkbox__label" for="contact-checkbox">Я
+
+                            согласен(-на) на обработку <a href="/files/Политика в отношении обработки персональных данных.pdf" target="_blank" class="checkbox__personalData">персональных
+
+                                данных</a></label></div>
+                    </div>
+                    <div class="form__button"><input type="submit" class="button button--blackInner" value="Отправить">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

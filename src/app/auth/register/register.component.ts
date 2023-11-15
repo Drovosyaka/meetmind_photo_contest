@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Inject, Renderer2} from '@angular/core';
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-register',

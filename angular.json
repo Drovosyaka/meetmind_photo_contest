@@ -87,7 +87,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/top-slider.css",
+              "src/assets/css/lg-thumbnail.css",
+              "src/assets/css/lg-zoom.css"
             ],
             "scripts": []
           }

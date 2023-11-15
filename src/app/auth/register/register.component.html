@@ -1,1 +1,86 @@
-<p>register works!</p>
+<div class="container" id="registration">
+  <div class="popupItem">
+
+    
+    <form class="login__form accountForm">
+      <h3 class="accountForm__title">Регистрация</h3>
+
+      <div class="accountForm__inputWrapper accountForm__inputWrapper--smallMargin">
+        <label for="popup-reg-login">Логин (мин. 3 символа)</label>
+        <input class="input input--account"
+               formControlName="login"
+               id="popup-reg-login"
+               required=""
+               type="text"
+               placeholder="Придумайте логин">
+      </div>
+
+      <div class="accountForm__inputWrapper accountForm__inputWrapper--smallMargin">
+        <label for="popup-reg-name">ФИО</label>
+        <input class="input input--account"
+                formControlName="full_name"
+               id="popup-reg-name"
+               placeholder="Введите ФИО">
+      </div>
+
+      <div class="accountForm__inputWrapper accountForm__inputWrapper--smallMargin">
+        <label for="popup-reg-phone">Телефон</label>
+        <input type="tel" 
+                class="input input--account" 
+                formControlName="full_name"
+                required="" 
+                id="popup-reg-phone" 
+                placeholder="Введите телефон">
+      </div>
+
+      <div class="accountForm__inputWrapper accountForm__inputWrapper--smallMargin">
+        <label for="popup-reg-mail">Email</label>
+        <input type="email" 
+                class="input input--account" 
+                required="" 
+                id="popup-reg-mail"
+                placeholder="Введите адрес электронной почты">
+      </div>
+
+      <div class="accountForm__inputWrapper accountForm__inputWrapper--smallMargin">
+        <label for="popup-reg-vk">Вконтакте</label>
+        <input class="input input--account" 
+                id="popup-reg-vk"
+                placeholder="Введите ссылку на Вконтакте">
+      </div>
+
+      <div class="accountForm__inputWrapper accountForm__inputWrapper--smallMargin">
+        <label for="popup-reg-password">Пароль</label>
+        <input class="input input--account" 
+                type="password" 
+                id="popup-reg-password" 
+                required="" autocomplete="off" placeholder="Введите пароль">
+      </div>
+
+      <div class="accountForm__inputWrapper accountForm__inputWrapper--smallMargin">
+        <label for="popup-reg-confirm-password">Подтверждение пароля</label>
+        <input class="input input--account" 
+                type="password" 
+                id="popup-reg-confirm-password" 
+                required="" 
+                autocomplete="off" 
+                placeholder="Подтвердите пароль">
+      </div>
+
+      <div class="accountForm__checkboxWrapper">
+        <div class="checkbox checkbox--account">
+          <input type="checkbox" 
+                  class="checkbox__element" 
+                  required="" 
+                  id="contact-checkbox" >
+          <label class="checkbox__label" for="contact-checkbox">Согласен на обработку персональных данных</label>
+        </div>
+      </div>
+
+      <div class="accountForm__button accountForm__button--notMargin">
+        <button type="submitLogin" class="button button--blackInner">Зарегистрироваться</button>
+      </div>
+      <p>*На указанный в форме email придет запрос на подтверждение регистрации.</p>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+                <h2 class="accountContent__title title title--small">Личный кабинет</h2>
+                <div class="accountContent__item personalData">
+
+                    <form [formGroup]="PersonalDataForm" (ngSubmit)="ProfileUpdate()" class="personalData__form accountForm">
+
+
+                        <div class="accountForm__inputWrapper">
+                            <label for="personal-data-name">ФИО</label>
+                            <input class="input input--account input--personalData" 
+                                   id="personal-data-name" 
+                                   name="full_name"
+                                   placeholder="ФИО" 
+                                   formControlName="full_name">
+                        </div>
+
+
+                        <div class="accountForm__row accountForm__row--personalData">
+                            <div class="accountForm__inputWrapper">
+                                <label for="personal-data-phone">Телефон:</label>
+                                <input type="tel" 
+                                       class="input input--account input--personalData" 
+                                       id="personal-data-phone" 
+                                       name="phone" 
+                                       placeholder="Введите телефон" 
+                                       formControlName="phone">
+                            </div>
+
+
+                            <div class="accountForm__inputWrapper">
+                                <label for="personal-data-mail">E-Mail:</label>
+                                <input type="email" 
+                                       class="input input--account input--personalData" 
+                                       id="personal-data-mail" 
+                                       name="email"
+                                       placeholder="Введите адрес электронной почты" 
+                                       formControlName="email">
+                            </div>
+                        </div>
+
+                        <div class="accountForm__row accountForm__row--personalData">
+                            <div class="accountForm__inputWrapper">
+                                <label for="personal-data-dob">Дата рождения</label>
+                                <input class="input input--account input--personalData js-input-date" 
+                                       id="personal-data-dob" 
+                                       name="birth_date" 
+                                       placeholder="Введите дату рождения 01.12.2000" 
+                                       formControlName="birth_date">
+                            </div>
+
+                            <div class="accountForm__inputWrapper">
+                                <label for="personal-data-vk">Вконтакте</label>
+                                <input class="input input--account input--personalData" 
+                                       id="personal-data-vk" 
+                                       name="vk_link"
+                                       placeholder="Введите ссылку на Вконтакте" 
+                                       formControlName="vk_link">
+                            </div>
+                        </div>
+
+
+                        <div class="accountForm__row accountForm__row--personalData">
+                            <div class="accountForm__inputWrapper">
+                                <label for="personal-data-login">Логин (мин. 3 символа):</label>
+                                <input class="input input--account input--personalData" 
+                                       id="personal-data-login" 
+                                       name="login"
+                                       placeholder="Логин" 
+                                       formControlName="username">
+                            </div>
+
+
+                            <div class="accountForm__inputWrapper">
+                                <label for="personal-data-password">Новый пароль:</label>
+                                <input type="password" 
+                                       class="input input--account input--personalData" 
+                                       id="personal-data-password" 
+                                       name="new_password" 
+                                       placeholder="Пароль"
+                                       formControlName="password"
+                                       autocomplete="off">
+                            </div>
+                        </div>
+
+
+                        <div class="accountForm__inputWrapper">
+                            <label for="personal-data-confirm-password">Подтверждение нового пароля:</label>
+                            <input class="input input--account input--personalData" 
+                                   id="personal-data-confirm-password" 
+                                   name="retype_password"
+                                   formControlName="password_confirmation"
+                                   placeholder="Подтверждение пароля">
+                        </div>
+
+
+                        <div class="accountForm__inputWrapper">
+                            <h4 class="accountForm__inputWrapperText">
+                                Аватар </h4>
+                            <label class="fileUpload" for="avatar">
+                                <div class="fileUpload__inner">
+                                    <span class="fileUpload__text">Нажмите, чтобы загрузить изображение</span>
+                                    <svg class="fileUpload__icon">
+                                        <use href="/assets/img/spritemap.svg#icon-uploadFile"></use>
+                                    </svg>
+                                    <div class="fileUpload__photoWrapper js-photos-wrapper">
+                                        <div class="fileUpload__photoItem" *ngIf="showMessage">
+                                            <div class="fileUpload__photoItemProgress">Изображение успешно добавлено</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="file" 
+                                       class="input input--file js-input-file" 
+                                       id="avatar"
+                                       (change)="onFileSelected($event)">
+                            </label>
+                        </div>
+                        <div class="accountForm__button accountForm__button--notMargin">
+                            <button type="submit" class="button button--blackInner">Сохранить</button>
+                        </div>
+                    </form>
+                </div>

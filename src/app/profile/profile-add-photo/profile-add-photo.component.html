@@ -1,0 +1,265 @@
+    <h2 class="accountContent__title title title--small">Добавить фото </h2>
+    <form [formGroup]="photoForm" method="post" enctype="multipart/form-data" (ngSubmit)="SubmitNomination()" class="js-add-photo">
+
+        <div class="accountContent__item myPhotos" *ngIf="photoSuccessfullyUploaded && confirmForm">
+            <h3 class="myPhotos__title">Мои фотографии</h3>
+            <div class="myPhotos__items">
+                <div class="myPhotos__item myPhotos__item--moderator">
+                    <div class="myPhotos__itemNomination">Номинация</div>
+                    <div class="myPhotos__itemNominationValue">{{ confirmForm.photo_category }}</div>
+                    <div class="myPhotos__itemImg">
+                        <img [src]="confirmForm.image" alt="photo">
+                        <div class="myPhotos__itemImgCondition">
+                            <svg class="myPhotos__itemImgConditionIcon">
+                                <use href="/assets/img/spritemap.svg#icon-myPhoto-done"></use>
+                            </svg>
+                            <span class="myPhotos__itemImgConditionText">Фото находится<br>на проверке у модератора</span>
+                        </div>
+                        <div class="myPhotos__itemImgCondition myPhotos__itemImgCondition--done">
+                            <svg class="myPhotos__itemImgConditionIcon">
+                                <use href="/assets/img/spritemap.svg#icon-myPhoto-done"></use>
+                            </svg>
+                            <span class="myPhotos__itemImgConditionText">Фото проверено модератером</span>
+                        </div>
+                    </div>
+                    <h4 class="myPhotos__itemImgTitle">{{ confirmForm.name_work }}</h4>
+                    <div class="myPhotos__itemActions">
+                        <a href="" class="myPhotos__itemAction">Редактировать</a>
+                        <a href="" class="myPhotos__itemAction js-delete-my-photo">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accountContent__item chooseNomination">
+
+            <h3 class="chooseNomination__title">Номинация</h3>
+
+
+            <div class="chooseNomination__items">
+
+                <div class="chooseNomination" *ngFor="let nomination of nominations">
+
+                    <input class="radio" type="radio" name="section" [id]="'nomination_' + nomination.id" [value]="nomination.id" required>
+
+                    <label  [for]="'nomination_' + nomination.id" (click)="showForm(nomination.id)" class="chooseNomination__item">
+                        <div class="chooseNomination__itemImg">
+                            <img [src]="nomination.image" alt="Photo">
+                        </div>
+                        <div class="chooseNomination__itemName">{{ nomination.name }}</div>
+                    </label>
+    
+                </div>
+                
+            </div>
+        </div>
+
+
+
+
+        <div class="accountContent__item infoPhotography" *ngIf="selectedNominationId">
+
+            <div class="infoPhotography__upload infoPhotography__form accountForm">
+
+                <h3 class="infoPhotography__title">Загрузить фото </h3>
+
+                <div class="accountForm__inputWrapper">
+                    <label for="input-file">
+                        <div class="fileUpload__inner">
+                            <span class="fileUpload__text">Нажмите, чтобы загрузить изображение </span>
+                            <svg class="fileUpload__icon"><use href="assets/img/spritemap.svg#icon-uploadFile"></use></svg>
+                            <div class="fileUpload__photoWrapper js-photos-wrapper">
+                                <div class="fileUpload__photoItem" *ngIf="fileSelected">
+                                    <img alt="" [src]="imageSrc"> 
+                                    <div class="fileUpload__photoItemName">{{ imageName }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <input 
+                        required="" 
+                        type="file"
+                        (change)="onFileSelected($event)" 
+                        class="input input--file js-input-file" 
+                        id="input-file"
+                        name="main-photo"
+                        formControlName="image"
+                        accept=".jpg, .jpeg, .png" 
+                        multiple="multiple">
+                    </label>
+                </div>
+
+
+
+                
+                <span class="accountForm__text accountForm__text--big">Вы являетесь правообладателем? </span>
+                <div class="accountForm__row">
+                    <div class="accountForm__inputWrapper">
+                        <input required class="radio" type="radio" name="copyright" id="radio-yes" formControlName="copyright" [value]="true" >
+                        <label for="radio-yes" class="radio__checker">
+                            <div class="inputRadio">
+                                <div class="inputRadio__element">
+                                    <svg class="inputRadio__elementIcon">
+                                        <use href="assets/img/spritemap.svg#icon-accountForm-radio"></use>
+                                    </svg>
+                                </div>
+                                <div class="inputRadio__text">Да</div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="accountForm__inputWrapper">
+                        <input required class="radio" type="radio" name="copyright" id="radio-no" formControlName="copyright" [value]="false">
+                        <label for="radio-no" class="radio__checker">
+                            <div class="inputRadio">
+                                <div class="inputRadio__element">
+                                    <svg class="inputRadio__elementIcon">
+                                        <use href="assets/img/spritemap.svg#icon-accountForm-radio"></use>
+                                    </svg>
+                                </div>
+                                <div class="inputRadio__text">Нет</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                
+                <div class="accountForm__inputWrapper">
+                    <label for="input-link-vk">
+                        Ссылка на публикацию VK </label>
+                    <input 
+                    required="" 
+                    class="input input--account" 
+                    id="input-link-vk" 
+                    name="link-vk" 
+                    placeholder="Введите ссылку" 
+                    formControlName="vk_link">
+                </div>
+                <p class="accountForm__invalid" *ngIf="errorMessages['vk_link']">{{ errorMessages['vk_link'] }}</p>
+            </div>
+
+
+            <div class="infoPhotography__photo-info infoPhotography__form accountForm" *ngIf="fileSelected">
+                <h3 class="accountForm__title accountForm__title--separator">Информация о съемке</h3>
+
+                <div class="accountForm__inputWrapper">
+                    <label for="input-name-work">Название работы</label>
+                    <input 
+                    required="" 
+                    class="input input--account" 
+                    id="input-name-work" 
+                    name="name-work"
+                    formControlName="name_work"
+                    placeholder="Введите название работы" value="">
+                </div>
+
+
+
+                <div class="accountForm__inputWrapper">
+                    <label for="description">Описание работы</label>
+                    <textarea 
+                    class="textarea textarea--account" 
+                    id="description" 
+                    name="description"
+                    formControlName="description" 
+                    placeholder="Введите описание работы">
+                    </textarea>
+                </div>
+
+                <div class="accountForm__inputWrapper">
+                    <label for="input-photo-place">
+                        Место съемки </label>
+                    <input 
+                    required="" 
+                    class="input input--account" 
+                    id="input-photo-place" 
+                    name="photo-place" 
+                    formControlName="photo_place" 
+                    placeholder="Укажите место сьемки" 
+                    value="">
+                </div>
+
+
+
+                <span class="accountForm__text">Подвергалось ли фото обработке? </span>
+
+                <div class="accountForm__row">
+                    <div class="accountForm__inputWrapper">
+                        <input 
+                        required="" 
+                        class="radio" 
+                        type="radio" name="processing" 
+                        id="radio-processing-yes" 
+                        formControlName="processing" 
+                        [value]="true">
+
+                        <label for="radio-processing-yes">
+                            <div class="inputRadio">
+                                <div class="inputRadio__element">
+                                    <svg class="inputRadio__elementIcon">
+                                        <use href="assets/img/spritemap.svg#icon-accountForm-radio"></use>
+                                    </svg>
+                                </div>
+                                <div class="inputRadio__text">Да</div>
+                            </div>
+                        </label>
+                    </div>
+
+
+                    <div class="accountForm__inputWrapper">
+                        <input 
+                        required="" 
+                        class="radio" 
+                        type="radio" 
+                        name="processing" 
+                        id="radio-processing-no" 
+                        formControlName="processing" 
+                        [value]="false">
+
+                        <label for="radio-processing-no">
+                            <div class="inputRadio">
+                                <div class="inputRadio__element">
+                                    <svg class="inputRadio__elementIcon">
+                                        <use href="assets/img/spritemap.svg#icon-accountForm-radio"></use>
+                                    </svg>
+                                </div>
+                                <div class="inputRadio__text">Нет</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+
+
+
+                <div class="accountForm__inputWrapper">
+                    <label for="input-model-release">Модельный релиз</label>
+                    <input 
+                    required="" 
+                    class="input input--account" 
+                    id="input-model-release"
+                    formControlName="model_release"
+                    name="photo-model-release" 
+                    placeholder="Укажите модельный релиз" 
+                    value="">
+                </div>
+
+                <div class="accountForm__inputWrapper">
+                    <label for="add-info">Дополнительная информация</label>
+                    <textarea 
+                    class="textarea textarea--account" 
+                    id="add-info" 
+                    formControlName="additional_info"  
+                    name="additional-info" 
+                    placeholder="Введите дополнительную информацию">
+                </textarea>
+                </div>
+                <div class="accountForm__button">
+                    <button [disabled]="photoForm.invalid" type="SubmitNomination" class="button button--blackInner">Опубликовать</button>
+                </div>
+            </div>
+        </div>
+
+        </form>
+
+
+

@@ -1,1 +1,56 @@
-<p>login works!</p>
+  <div class="container" id="login">
+    <div class="popupItem">
+      <form [formGroup]="loginForm" (ngSubmit)="submitLogin()" class="login__form accountForm">
+        
+        <h3 class="accountForm__title">Вход<br>в личный кабинет</h3>
+
+        <div class="accountForm__inputWrapper accountForm__inputWrapper--icon">
+          <label>
+            <div class="labelIcon">
+              <svg class="labelIcon__icon">
+                <use xlink:href="/assets/img/spritemap.svg#icon-personal-account-icon"></use>
+              </svg>
+            </div>
+          </label>
+          <input  class="input input--login" 
+                  formControlName="username_user" 
+                  required
+                  type="text"
+                  placeholder="Логин">
+        </div>
+
+        <div class="accountForm__inputWrapper accountForm__inputWrapper--icon">
+          <label>
+            <div class="labelIcon">
+              <svg class="labelIcon__icon">
+                <use xlink:href="/assets/img/spritemap.svg#icon-account-password"></use>
+              </svg>
+            </div>
+          </label>
+          <input  class="input input--login"
+                  formControlName="password_user" 
+                  required
+                  autocomplete="on"
+                  type="password"
+                  placeholder="Пароль">
+        </div>
+        <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}<br></div>
+
+
+        <div class="accountForm__button accountForm__button--notMargin">
+          <button [disabled]="loginForm.invalid" type="submitLogin" class="button button--blackInner">Войти</button>
+        </div>
+
+      </form>
+
+      <div class="popupItem__separator"></div>
+
+      <div class="popupItem__links">
+        <a href="" class="popupItem__link js-open-modal">Забыли пароль?</a>
+        <a routerLink="/register" class="popupItem__link js-open-modal">Регистрация</a>
+      </div>
+
+
+    </div>
+  </div>
+

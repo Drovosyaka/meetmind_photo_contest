@@ -1,0 +1,65 @@
+<app-header></app-header>
+
+<section class="container personalAccount">
+    <div class="container__row">
+        <div class="personalAccount__wrapper">
+            <div class="personalAccount__personalCard personalCard js-personal-card">
+                <div class="personalCard__top">
+                    <div class="personalCard__mobTop">
+                        <div class="personalCard__mobBurger js-personal-burger">
+                            <div class="personalCard__mobBurgerLine"></div>
+                        </div>
+
+
+                        <h3 class="personalCard__mobTopTitle title title--small">Добавить фото</h3>
+                    </div>
+                    <div class="personalCard__photo" *ngIf="profileData">
+                        <img [src]="profileData.avatar" alt="Account photo" class="personalCard__photo"></div>
+
+
+
+                    <h3 class="personalCard__name" *ngIf="profileData && profileData.full_name">{{ profileData.full_name }}</h3>
+                </div>
+                <ul class="personalCard__links">
+
+
+
+                    <li class="personalCard__link" routerLinkActive="active">
+
+                        <svg class="personalCard__linkIcon">
+                            <use href="/assets/img/spritemap.svg#icon-personal-account-icon"></use>
+                        </svg>
+
+                        <a [routerLink]="['/profile', 'data']">Личные данные</a></li>
+
+
+                    <li class="personalCard__link" routerLinkActive="active">
+
+                        <svg class="personalCard__linkIcon personalCard__linkIcon--add">
+                            <use href="/assets/img/spritemap.svg#icon-personal-add-photo-icon"></use>
+                        </svg>
+
+                        <a [routerLink]="['/profile', 'add-photo']">Добавить фото</a></li>
+
+
+                    <li class="personalCard__link">
+                        <svg class="personalCard__linkIcon">
+                            <use href="assets/img/spritemap.svg#icon-personal-exit-icon"></use>
+                        </svg>
+                        <a (click)="logout()" class="js-open-modal">Выход</a></li>
+
+                    <li class="personalCard__link personalCard__link--separator"></li>
+
+                    <li class="personalCard__link">
+                        <svg class="personalCard__linkIcon personalCard__linkIcon--feedback">
+                            <use href="assets/img/spritemap.svg#icon-personal-icon"></use>
+                        </svg>
+                        <a href="mailto:inbox@google.com">Обратная связь</a></li>
+                </ul>
+            </div>
+            <div class="personalAccount__content accountContent">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</section>
